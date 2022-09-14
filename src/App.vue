@@ -2,18 +2,17 @@
   <div class="wrapper page">
     <form class="calc-form-container" @submit.prevent :class="{show: show === false}">
       <div>
-        <div>
-          <input id="name"
+        <input type="textarea" class="textarea" placeholder="Поле для текста">
+        <div class="inputs">
+          <input
           :value="height"
           @input="height = $event.target.value"
           type="number"
           class="input-height"
           placeholder="Высота в см"
           >
-        </div>
-
-        <div >
-          <input id = "name2"
+      
+          <input
           :value="width"
           @input="width = $event.target.value"
           type="number"
@@ -22,7 +21,7 @@
           >
         </div>
         
-        <div >
+        <div class="inputs">
           <input 
           :value="count"
           @input="count = $event.target.value"
@@ -30,15 +29,13 @@
           class="input-count "
           placeholder="Кол-во"
           >
-        </div>
 
-        <div >
           <input 
           :value="price"
           @input="price = $event.target.value"
           type="number"
           class="input-price"
-          placeholder="Цена за ткань m^2"
+          placeholder="Стоимость"
           >
         </div>
         <button 
@@ -48,14 +45,25 @@
 
       </div>
     </form>
+    <div>Форма №{{numDoc}} </div> 
+
+    <div style="display: flex;justify-content:space-between;max-width: 500px;">
+      <div style="display:flex">  Закасчик: <input type="text" style="margin: 0 0 0 0px;max-width: 100px; padding: 0;"></div>
+      <div style="display:flex">Дата: <input type="text" style="margin: 0 0 0 0px;max-width: 100px; padding: 0;"></div>
+    </div>
     <hello-world :array="array"/>
     <footer>
     <div>
-      <button @click="change()">
-      Show
+      <button @click="change()" class="btn" style="margin-top: 100px">
+      Скрыть поля заполения
       </button>
     </div>
     </footer>
+    <div>
+      <button @click="saveTable()" class="btn">
+      Новая форма
+      </button>
+    </div>
   </div>
   
 
@@ -76,9 +84,10 @@ export default {
       price: '',
       count: '',
       array: [
-
+        
       ],
       show: true,
+      numDoc: '1'
     }
   },
   methods: {
@@ -103,6 +112,17 @@ export default {
 
     change() {
       this.show = !this.show
+    },
+
+    saveTable() {
+      this.numDoc++
+      localStorage.numDoc = this.numDoc
+      location.reload()
+    },
+  },
+  mounted() {
+    if(localStorage.numDoc) {
+      this.numDoc = localStorage.numDoc
     }
   }
 }
@@ -122,11 +142,20 @@ body {
   display: flex;
   flex-direction: column;
 }
+.textarea{
+  border: black solid 1px;
+}
+.inputs {
+  display: flex;
+  justify-content: space-around;
+}
 .calc-form-container{
   flex: 1 1 auto;
 }
 .input-height, .input-width, .input-count, .input-price{
   margin: 10px 5px;
+  border-bottom: 1px solid black;
+  max-width: 100px;
 }
 .show {
   display: none;
@@ -134,11 +163,12 @@ body {
 
 .btn {
   margin: 10px 0 20px 0;
+  border-radius: 10px;
 }
 
 $main-color: #F44336;
 $secondary-color: rgb(0, 0, 0);
-$main-color: #333;
+$main-color: rgb(0, 0, 0);
 $secondary-color: #2196f3;
 $width: 200px; // Change Me
 

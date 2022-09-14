@@ -8,18 +8,18 @@
           <th>ШИР.</th>
           <th>ВЫС.</th>
           <th>ШТ.</th>
-          <th>УПРАВ.</th>
+          <th>УПР.</th>
           <th>НАИМЕНОВАНИЕ</th>
           <th>СТОИМОСТЬ</th>
           <th>СУММА</th>
         </tr>
-        <tr v-for="item, i in array" :key="item.id" >
+        <tr v-for="item, i in array" :key="item.id">
           <td>{{++i}}</td>
           <td>{{item.width}}</td>
           <td>{{item.height}}</td>
           <td>{{item.count}}</td>
-          <td><input type="text" class="input-td"></td>
-          <td><input type="text" class="input-td"></td>
+          <td style="max-width: 20px;"><input type="text" class="input-td">{{}}</td>
+          <td><input type="text" class="input-td">{{}}</td>
           <td>{{item.price}}</td>
           <td>{{item.An.toFixed(0)}}</td>
         </tr>
@@ -34,16 +34,16 @@ export default {
   props: {
     array: {
       type: Array
-    }
+    },
   },
 }
 </script>
 
 <style scoped>
-	table.iksweb{text-decoration: none;border-collapse:collapse;width:100%;text-align:left;}
-	table.iksweb th{font-weight:normal;font-size:13px; color:#ffffff;background-color:#354251;}
-	table.iksweb td{font-size:13px;color:#354251;}
-	table.iksweb td,table.iksweb th{white-space:pre-wrap;padding:10px 5px;line-height:13px;vertical-align: middle;border: 1px solid #354251;}	table.iksweb tr:hover{background-color:#f9fafb}
+	table.iksweb{text-decoration: none;border-collapse:collapse;text-align:left;color:#000000;}
+	table.iksweb th{font-weight:normal;font-size:13px; color:#ffffff;background-color:#181824;}
+	table.iksweb td{font-size:13px;color:#000000;}
+	table.iksweb td,table.iksweb th{white-space:pre-wrap;padding:10px 10px;line-height:13px;vertical-align: middle;border: 1px solid #354251;}	table.iksweb tr:hover{background-color:#f9fafb}
 	table.iksweb tr:hover td{color:#354251;cursor:pointer;}
 	.mobile-table{width: 100%; max-width: 100%; overflow-x: auto;}
 
