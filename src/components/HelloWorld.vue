@@ -1,31 +1,35 @@
 <template>
   <div>  
-    
     <div class="hello mobile-table wrapper">
       <table border="1" rules="all" cellspacing="10" cellpadding="0" class="iksweb">
         <tr>
           <th>№</th>
-          <th>ШИР.</th>
-          <th>ВЫС.</th>
-          <th>Площ.</th>
+          <th>ШИР. cm</th>
+          <th>ВЫС. cm</th>
+          <th>Площ. m2</th>
           <th>ШТ.</th>
           <th>УПР.</th>
           <th>НАИМЕНОВАНИЕ</th>
           <th>СТОИМОСТЬ</th>
           <th>СУММА</th>
         </tr>
-        <tr v-for="item, i in array" :key="item.id">
-          <td>{{++i}}</td>
-          <td>{{item.width}}</td>
-          <td>{{item.height}}</td>
-          <td>{{item.Square}}</td>
-          <td>{{item.count}}</td>
-          <td style="max-width: 20px;"><input type="text" class="input-td">{{}}</td>
-          <td><input type="text" class="input-td">{{}}</td>
-          <td>{{item.price}}</td>
-          <td>{{item.An.toFixed(0) * item.course}}</td>
-        </tr>
-      </table> 
+        
+          <tr v-for="item, i in array" :key="item.id" :id="item.id">
+            
+              <td>{{++i}}</td>
+              <td>{{item.width}}</td>
+              <td>{{item.height}}</td>
+              <td>{{item.Square}}</td>
+              <td>{{item.count}}</td>
+              <td style="max-width: 20px;"><input type="text" class="input-td">{{}}</td>
+              <td><input type="text" class="input-td">{{}}</td>
+              <td>{{item.price.toFixed(2)}}</td>
+              <td>{{item.An.toFixed(2)}}</td>
+              <td><button
+                @click = "deleteR(item.id)"
+                >ff</button></td>
+          </tr>
+      </table>
     </div>
   </div>
 </template>
@@ -38,6 +42,12 @@ export default {
       type: Array
     },
   },
+  methods: {
+    deleteR(item) {
+      var del = document.getElementById(item);
+      del.style.display = 'none'
+    },
+  }
 }
 </script>
 

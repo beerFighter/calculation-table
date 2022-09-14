@@ -8,7 +8,7 @@
           @input="course = $event.target.value"
           type="number"
           class="input-course"
-          placeholder="Курс $ к тенге"
+          placeholder="Курс $ к тг"
           >
         <div class="inputs">
           <input
@@ -90,7 +90,7 @@ export default {
       height: '',
       width: '',
       price: '',
-      count: '',
+      count: '1',
       course: '',
       array: [
         
@@ -107,10 +107,10 @@ export default {
         height: this.height,
         width: this.width,
         count: this.count,
-        price: this.price,
+        An: (((this.width * this.height) / 10000)) * this.price,
+        price: this.price / this.course,
         course: this.course,
-        An: (((this.width * this.height)) * this.count) * this.price,
-        Square: this.width * this.height
+        Square: (this.width * this.height) / 10000
       }
 
       this.array.push(newTable)
