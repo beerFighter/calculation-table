@@ -5,6 +5,14 @@
         <input type="textarea" class="textarea" placeholder="Поле для текста">
         <div class="inputs">
           <input
+          :value="width"
+          @input="width = $event.target.value"
+          type="number"
+          class="input-width "
+          placeholder="Ширина в см"
+          >
+
+          <input
           :value="height"
           @input="height = $event.target.value"
           type="number"
@@ -12,13 +20,6 @@
           placeholder="Высота в см"
           >
       
-          <input
-          :value="width"
-          @input="width = $event.target.value"
-          type="number"
-          class="input-width "
-          placeholder="Ширина в см"
-          >
         </div>
         
         <div class="inputs">
@@ -48,8 +49,8 @@
     <div>Форма №{{numDoc}} </div> 
 
     <div style="display: flex;justify-content:space-between;max-width: 500px;">
-      <div style="display:flex">  Закасчик: <input type="text" style="margin: 0 0 0 0px;max-width: 100px; padding: 0;"></div>
-      <div style="display:flex">Дата: <input type="text" style="margin: 0 0 0 0px;max-width: 100px; padding: 0;"></div>
+      <div style="display:flex">  Заказчик: <input type="text" style="margin: 0 0 0 5px;max-width: 100px; padding: 0;"></div>
+      <div style="display:flex">Дата: <input type="text" style="margin: 0 0 0 5px;max-width: 100px; padding: 0;"></div>
     </div>
     <hello-world :array="array"/>
     <footer>
@@ -99,7 +100,8 @@ export default {
         width: this.width,
         count: this.count,
         price: this.price,
-        An: (((this.width * this.height) / 100 ) * this.count) * this.price
+        An: (((this.width * this.height)) * this.count) * this.price,
+        Square: this.width * this.height
       }
 
       this.array.push(newTable)

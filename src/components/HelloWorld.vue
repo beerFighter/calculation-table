@@ -7,6 +7,7 @@
           <th>№</th>
           <th>ШИР.</th>
           <th>ВЫС.</th>
+          <th>Площ.</th>
           <th>ШТ.</th>
           <th>УПР.</th>
           <th>НАИМЕНОВАНИЕ</th>
@@ -17,6 +18,7 @@
           <td>{{++i}}</td>
           <td>{{item.width}}</td>
           <td>{{item.height}}</td>
+          <td>{{item.Square}}</td>
           <td>{{item.count}}</td>
           <td style="max-width: 20px;"><input type="text" class="input-td">{{}}</td>
           <td><input type="text" class="input-td">{{}}</td>
