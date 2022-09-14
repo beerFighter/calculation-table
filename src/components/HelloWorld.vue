@@ -23,7 +23,7 @@
           <td style="max-width: 20px;"><input type="text" class="input-td">{{}}</td>
           <td><input type="text" class="input-td">{{}}</td>
           <td>{{item.price}}</td>
-          <td>{{item.An.toFixed(0)}}</td>
+          <td>{{item.An.toFixed(0) * item.course}}</td>
         </tr>
       </table> 
     </div>

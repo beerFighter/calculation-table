@@ -3,6 +3,13 @@
     <form class="calc-form-container" @submit.prevent :class="{show: show === false}">
       <div>
         <input type="textarea" class="textarea" placeholder="Поле для текста">
+        <input
+          :value="course"
+          @input="course = $event.target.value"
+          type="number"
+          class="input-course"
+          placeholder="Курс $ к тенге"
+          >
         <div class="inputs">
           <input
           :value="width"
@@ -84,6 +91,7 @@ export default {
       width: '',
       price: '',
       count: '',
+      course: '',
       array: [
         
       ],
@@ -100,6 +108,7 @@ export default {
         width: this.width,
         count: this.count,
         price: this.price,
+        course: this.course,
         An: (((this.width * this.height)) * this.count) * this.price,
         Square: this.width * this.height
       }
@@ -154,7 +163,7 @@ body {
 .calc-form-container{
   flex: 1 1 auto;
 }
-.input-height, .input-width, .input-count, .input-price{
+.input-height, .input-width, .input-count, .input-price, .input-course{
   margin: 10px 5px;
   border-bottom: 1px solid black;
   max-width: 100px;
