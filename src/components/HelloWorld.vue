@@ -14,9 +14,9 @@
           <th>СУММА</th>
         </tr>
         
-          <tr v-for="item, i in array" :key="item.id" :id="item.id">
+          <tr v-for="item in array" :key="item.id" :id="item.id">
             
-              <td>{{++i}}</td>
+              <td style="max-width: 20px"><input type="number" class="input-td" style="width: 30px"></td>
               <td>{{item.width}}</td>
               <td>{{item.height}}</td>
               <td>{{item.Square}}</td>
@@ -25,9 +25,11 @@
               <td><input type="text" class="input-td">{{}}</td>
               <td>{{item.price.toFixed(2)}}</td>
               <td>{{item.An.toFixed(2)}}</td>
-              <td><button
+              <td :class="{show: show === false}"><button
+                class="btn"
+                style="margin: 0;" 
                 @click = "deleteR(item.id)"
-                >ff</button></td>
+                >X</button></td>
           </tr>
       </table>
     </div>
@@ -41,11 +43,15 @@ export default {
     array: {
       type: Array
     },
+    show: {
+      type: Boolean
+    }
   },
   methods: {
     deleteR(item) {
+      console.log(item)
       var del = document.getElementById(item);
-      del.style.display = 'none'
+      del.remove();
     },
   }
 }

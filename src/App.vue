@@ -59,7 +59,7 @@
       <div style="display:flex">  Заказчик: <input type="text" style="margin: 0 0 0 5px;max-width: 100px; padding: 0;"></div>
       <div style="display:flex">Дата: <input type="text" style="margin: 0 0 0 5px;max-width: 100px; padding: 0;"></div>
     </div>
-    <hello-world :array="array"/>
+    <hello-world :array="array" :show="show"/>
     <footer>
     <div>
       <button @click="change()" class="btn" style="margin-top: 100px">
@@ -90,7 +90,7 @@ export default {
       height: '',
       width: '',
       price: '',
-      count: '1',
+      count: '',
       course: '',
       array: [
         
@@ -107,7 +107,7 @@ export default {
         height: this.height,
         width: this.width,
         count: this.count,
-        An: (((this.width * this.height) / 10000)) * this.price,
+        An: (((this.width * this.height) / 10000) * this.price) * this.count,
         price: this.price / this.course,
         course: this.course,
         Square: (this.width * this.height) / 10000
