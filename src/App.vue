@@ -59,7 +59,15 @@
       <div style="display:flex">  Заказчик: <input type="text" style="margin: 0 0 0 5px;max-width: 100px; padding: 0;"></div>
       <div style="display:flex">Дата: <input type="text" style="margin: 0 0 0 5px;max-width: 100px; padding: 0;"></div>
     </div>
-    <hello-world :array="array" :show="show"/>
+    <hello-world :array="array" :show="show" :sum="sum" @deleteRow = "deleteRow"/>
+    <div v-if="this.sum[0]">
+      <div style="margin: 10px 0 10px 0;">
+        Конечная сумма в тенге
+      </div>
+      <span style="border-bottom: 1px solid black; padding: 5px;">
+        {{this.sum.reduce((a, b) => a + b.An, 0) * this.course}}
+      </span>
+    </div>
     <footer>
     <div>
       <button @click="change()" class="btn" style="margin-top: 100px">
@@ -73,8 +81,6 @@
       </button>
     </div>
   </div>
-  
-
 </template>
 
 <script>
@@ -92,11 +98,11 @@ export default {
       price: '',
       count: '',
       course: '',
-      array: [
-        
-      ],
+      array: [],
       show: true,
-      numDoc: '1'
+      numDoc: '1',
+      sum: [],
+      ConhAn: ''
     }
   },
   methods: {
@@ -108,19 +114,23 @@ export default {
         width: this.width,
         count: this.count,
         An: (((this.width * this.height) / 10000) * this.price) * this.count,
-        price: this.price / this.course,
+        price: this.price,
         course: this.course,
-        Square: (this.width * this.height) / 10000
+        Square: (this.width * this.height) / 10000,
       }
+      
+      let Tid = newTable.id
+      let TAn = newTable.An
+      
+      this.sum.push({id: Tid, An: TAn})
 
+      console.log(this.sum)
       this.array.push(newTable)
       this.height = ""
       this.width = ""
       this.count = ""
       this.price = ""
-
     },
-
     change() {
       this.show = !this.show
     },
@@ -130,11 +140,19 @@ export default {
       localStorage.numDoc = this.numDoc
       location.reload()
     },
+    deleteRow(item) {
+      console.log(this.sum)
+      this.sum = this.sum.filter(i => i.id !== item);
+      console.log(this.sum)
+    }
   },
   mounted() {
     if(localStorage.numDoc) {
       this.numDoc = localStorage.numDoc
     }
+  },
+  computed() {
+    
   }
 }
 </script>
