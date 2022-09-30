@@ -65,7 +65,7 @@
         Конечная сумма в тенге
       </div>
       <span style="border-bottom: 1px solid black; padding: 5px;">
-        {{(this.sum.reduce((a, b) => a + b.An, 0) * this.course).toFixed(0)}}
+        {{(this.sum.reduce((a, b) => a + b.An, 0) * this.course).toFixed(2)}}
       </span>
     </div>
     <footer>
@@ -106,22 +106,30 @@ export default {
   },
   methods: {
     createPost() {
-      
+      let width = 0
+      let height = 0
+
+      if(this.width < 100){
+        width = 100
+      }
+      if (this.height < 160){
+        height = 160
+      }
+      console.log(width)
+      console.log(height)
+
       const newTable = {
         id: Date.now(),
         height: this.height,
         width: this.width,
         count: this.count,
-        An: (((this.width * this.height) / 10000) * this.price) * this.count,
+        An: (((width * height) / 10000) * this.price) * this.count,
         price: this.price,
         course: this.course,
         Square: (this.width * this.height) / 10000,
       }
       
-      let Tid = newTable.id
-      let TAn = newTable.An
-      
-      this.sum.push({id: Tid, An: TAn})
+      this.sum.push({id: newTable.id, An: newTable.An})
 
       this.array.push(newTable)
 
