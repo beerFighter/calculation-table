@@ -112,11 +112,13 @@ export default {
       if(this.width < 100){
         width = 100
       }
+      else width = this.width
+
       if (this.height < 160){
         height = 160
       }
-      console.log(width)
-      console.log(height)
+      else height = this.height
+      
 
       const newTable = {
         id: Date.now(),
@@ -126,7 +128,7 @@ export default {
         An: (((width * height) / 10000) * this.price) * this.count,
         price: this.price,
         course: this.course,
-        Square: (this.width * this.height) / 10000,
+        Square: (width * height) / 10000,
       }
       
       this.sum.push({id: newTable.id, An: newTable.An})
@@ -148,9 +150,7 @@ export default {
       location.reload()
     },
     deleteRow(item) {
-      console.log(this.sum)
       this.sum = this.sum.filter(i => i.id !== item);
-      console.log(this.sum)
     }
   },
   mounted() {
