@@ -53,11 +53,11 @@
 
       </div>
     </form>
-    <div>Форма №{{numDoc}} </div> 
+    <div>Заказ №{{numDoc}} </div> 
 
-    <div style="display: flex;justify-content:space-between;max-width: 500px;">
-      <div style="display:flex">  Заказчик: <input type="text" style="margin: 0 0 0 5px;max-width: 100px; padding: 0;"></div>
-      <div style="display:flex">Дата: <input type="text" style="margin: 0 0 0 5px;max-width: 100px; padding: 0;"></div>
+    <div >
+      <div style="display:flex">  Заказчик: <input type="text" style="; padding: 0;"></div>
+      <div style="display:flex; padding: 0;">Дата: {{date.toLocaleString()}} </div>
     </div>
     <hello-world :array="array" :show="show" :sum="sum" @deleteRow = "deleteRow"/>
     <div v-if="this.sum[0]">
@@ -77,7 +77,7 @@
     </footer>
     <div>
       <button @click="saveTable()" class="btn">
-      Новая форма
+      Новый заказ
       </button>
     </div>
   </div>
@@ -101,7 +101,8 @@ export default {
       array: [],
       show: true,
       numDoc: '1',
-      sum: []
+      sum: [],
+      date: new Date(),
     }
   },
   methods: {
