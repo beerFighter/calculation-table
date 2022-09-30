@@ -65,7 +65,7 @@
         Конечная сумма в тенге
       </div>
       <span style="border-bottom: 1px solid black; padding: 5px;">
-        {{this.sum.reduce((a, b) => a + b.An, 0) * this.course}}
+        {{(this.sum.reduce((a, b) => a + b.An, 0) * this.course).toFixed(0)}}
       </span>
     </div>
     <footer>
@@ -101,8 +101,7 @@ export default {
       array: [],
       show: true,
       numDoc: '1',
-      sum: [],
-      ConhAn: ''
+      sum: []
     }
   },
   methods: {
@@ -124,8 +123,8 @@ export default {
       
       this.sum.push({id: Tid, An: TAn})
 
-      console.log(this.sum)
       this.array.push(newTable)
+
       this.height = ""
       this.width = ""
       this.count = ""

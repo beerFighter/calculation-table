@@ -9,19 +9,19 @@
           <th>Площ. m2</th>
           <th>ШТ.</th>
           <th>УПР.</th>
-          <th>НАИМЕНОВАНИЕ</th>
+          <th style="width: 10px">НАИМЕНОВАНИЕ</th>
           <th>СТОИМОСТЬ</th>
           <th>СУММА</th>
         </tr>
-        <tr v-for="item in array" :key="index" :id="item.id">
+        <tr v-for="item in array" :key="item.id" :id="item.id">
           
-            <td style="max-width: 20px">{{index}}</td>
+            <td style="max-width: 20px"><input type="number" class="input-td" style="width: 30px"></td>
             <td>{{item.width}}</td>
             <td>{{item.height}}</td>
             <td>{{item.Square}}</td>
             <td>{{item.count}}</td>
             <td style="max-width: 20px;"><input type="text" class="input-td">{{}}</td>
-            <td><input type="text" class="input-td">{{}}</td>
+            <td><input style="width: 200px" type="text" class="input-td">{{}}</td>
             <td>{{item.price}}</td>
             <td>{{item.An.toFixed(2)}}</td>
             <td :class="{show: show === false}"><button
