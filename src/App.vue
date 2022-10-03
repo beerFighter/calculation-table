@@ -62,7 +62,7 @@
     <hello-world :array="array" :show="show" :sum="sum" @deleteRow = "deleteRow"/>
     <div v-if="this.sum[0]">
       <div style="margin: 10px 0 10px 0;">
-        Конечная сумма в тенге
+        Итого
       </div>
       <span style="border-bottom: 1px solid black; padding: 5px;">
         {{(this.sum.reduce((a, b) => a + b.An, 0) * this.course).toFixed(2)}}
