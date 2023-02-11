@@ -59,7 +59,8 @@
       <div style="display:flex">  Заказчик: <input type="text" style="; padding: 0;"></div>
       <div style="display:flex; padding: 0;">Дата: {{date.toLocaleString()}} </div>
     </div>
-    <hello-world :array="array" :show="show" :sum="sum" @deleteRow = "deleteRow"/>
+
+    <hello-world :array="array" :show="show" :sum="sum" :sum2="sum2" :sum3="sum3" @deleteRow = "deleteRow"/>
     <div v-if="this.sum[0]">
       <div style="margin: 10px 0 10px 0;">
         Итого
@@ -68,6 +69,27 @@
         {{(this.sum.reduce((a, b) => a + b.An, 0) * this.course).toFixed(2)}}
       </span>
     </div>
+
+
+    <div v-if="this.sum2[0]">
+      <div style="margin: 30px 0 10px 0;">
+        Общая площ. m2
+      </div>
+      <span style="border-bottom: 1px solid black; padding: 5px;">
+        {{(this.sum2.reduce((a, b) => a + b.An2, 0)).toFixed(2)}}
+      </span>
+    </div>
+
+    <div v-if="this.sum3[0]">
+      <div style="margin: 30px 0 10px 0;">
+        Общее кол-во окон
+      </div>
+      <span style="border-bottom: 1px solid black; padding: 5px;">
+        {{this.sum3.reduce((accumulator, currentValue) => accumulator + currentValue.An3, 0)}}
+      </span>
+    </div>
+
+
     <footer>
     <div>
       <button @click="change()" class="btn" style="margin-top: 100px">
@@ -85,7 +107,6 @@
 
 <script>
 import HelloWorld from "@/components/HelloWorld.vue"
-
 export default {
   components: {
     HelloWorld
@@ -102,40 +123,42 @@ export default {
       show: true,
       numDoc: '1',
       sum: [],
+      sum2: [],
+      sum3: [],
       date: new Date(),
+      
     }
   },
   methods: {
     createPost() {
       let width = 0
       let height = 0
-
       if(this.width < 100){
         width = 100
       }
       else width = this.width
-
       if (this.height < 160){
         height = 160
       }
       else height = this.height
       
-
       const newTable = {
         id: Date.now(),
         height: this.height,
         width: this.width,
         count: this.count,
         An: (((width * height) / 10000) * this.price) * this.count,
+        An2: (width * height) / 10000,
+        An3: this.count,
         price: this.price,
         course: this.course,
         Square: (width * height) / 10000,
       }
       
       this.sum.push({id: newTable.id, An: newTable.An})
-
+      this.sum2.push({id: newTable.id, An2: newTable.An2})
+      this.sum3.push({id: newTable.id, An3: Number(newTable.An3)})
       this.array.push(newTable)
-
       this.height = ""
       this.width = ""
       this.count = ""
@@ -144,7 +167,6 @@ export default {
     change() {
       this.show = !this.show
     },
-
     saveTable() {
       this.numDoc++
       localStorage.numDoc = this.numDoc
@@ -152,6 +174,8 @@ export default {
     },
     deleteRow(item) {
       this.sum = this.sum.filter(i => i.id !== item);
+      this.sum2 = this.sum2.filter(i => i.id !== item);
+      this.sum3 = this.sum3.filter(i => i.id !== item);
     }
   },
   mounted() {
@@ -166,7 +190,6 @@ export default {
 </script>
 
 <style lang="scss">
-
 @import url('https://fonts.googleapis.com/css2?family=Overpass:wght@300&display=swap');
 #app {
   font-family: 'Overpass', sans-serif;
@@ -197,24 +220,19 @@ body {
 .show {
   display: none;
 }
-
 .btn {
   margin: 10px 0 20px 0;
   border-radius: 10px;
 }
-
 $main-color: #F44336;
 $secondary-color: rgb(0, 0, 0);
 $main-color: rgb(0, 0, 0);
 $secondary-color: #2196f3;
 $width: 200px; // Change Me
-
 * {
   box-sizing: border-box;
 }
-
 // body {background: $main-color;}
-
 .centered {
   width: $width;
   height: $width/5;
@@ -223,16 +241,12 @@ $width: 200px; // Change Me
   top: 0; bottom: 0;
   left: 0; right: 0; 
 }
-
 .group {
   width: 100%;
   height: $width/5;
   overflow: hidden;
   position: relative;
 }
-
-
-
 input {
   display: block;
   width: 100%;
@@ -243,15 +257,12 @@ input {
   color: rgb(0, 0, 0);
   font-size: $width/15;
   transition: .3s ease;
-
   &:focus {
     outline: none;
-
     ~ .bar:before {
     transform: translateX(0);
     }
   }
-
   // Stop Chrome's hideous pale yellow background on auto-fill
   
   &:-webkit-autofill {
@@ -260,7 +271,6 @@ input {
     // border-bottom-color: rgba(white, .5);
   }
 }
-
 .bar {
   // background: $secondary-color;
   background: rgba(white, .5);
@@ -283,6 +293,5 @@ input {
     
   }
 }
-
 ::selection {background: rgba($secondary-color, .3);}
 </style>

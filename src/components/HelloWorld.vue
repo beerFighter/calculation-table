@@ -45,6 +45,12 @@ export default {
     sum: {
       type: Array
     },
+    sum2: {
+      type: Array
+    },
+    sum3: {
+      type: Array
+    },
     show: {
       type: Boolean
     }
@@ -66,7 +72,6 @@ export default {
 	table.iksweb td,table.iksweb th{white-space:pre-wrap;padding:10px 10px;line-height:13px;vertical-align: middle;border: 1px solid #354251;}	table.iksweb tr:hover{background-color:#f9fafb}
 	table.iksweb tr:hover td{color:#354251;cursor:pointer;}
 	.mobile-table{width: 100%; max-width: 100%; overflow-x: auto;}
-
   .input-td {
     margin: 0;
     padding: 0;
